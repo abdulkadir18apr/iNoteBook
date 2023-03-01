@@ -20,15 +20,19 @@ function App() {
       document.body.style.backgroundColor="#fff7ed"
     }
   }
+  console.log("Hello")
   return (
     <>
     <NoteState>
     <BrowserRouter>
-          <Navbar toggleMode={toggleMode} mode={mode}/>
-          <Routes>
-            <Route path='/' element={<Home />}></Route>
-            <Route path='/about' element={<About />}></Route>
-          </Routes>
+    <Navbar toggleMode={toggleMode} mode={mode}/>
+          <div className="container">
+           
+            <Routes>
+              <Route path='/' element={<Home />}></Route>
+              <Route path='/about' element={<About />}></Route>
+            </Routes>
+          </div>
 
         </BrowserRouter>
 
