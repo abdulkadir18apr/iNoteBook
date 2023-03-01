@@ -49,6 +49,7 @@ router.put('/updatenote/:id',fetchuser,async(req,res)=>{
             if(!note){
                 return  res.status(404).send("Not Found")
             }
+            //notes belog to a user
             if(note.user.toString() !== req.user.id){
                 return res.status(401).send("Access denied")
             }
