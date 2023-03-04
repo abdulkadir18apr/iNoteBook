@@ -44,7 +44,7 @@ export default function Navbar(props) {
                 <ul className={`right nav-list ${mobile}`}>
                     <li id="switch"><div className="form-check form-switch">
                         <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={HandleMode} />
-                        <label className="form-check-label" htmlFor="flexSwitchCheckDefault" style={{color:'#ea580c'} }>{modeLabel}</label>
+                        <label className="form-check-label" htmlFor="flexSwitchCheckDefault" style={{color:'#a21caf'} }>{modeLabel}</label>
                     </div></li>
                     <li><Link to="/login" className= {`${location.pathname==='/login'?'active':''}`}>Login</Link></li>
                 </ul>

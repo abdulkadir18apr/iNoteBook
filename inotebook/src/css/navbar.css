@@ -1,7 +1,8 @@
 :root{
-    --bgclolor:#fed7aa;
+    --bgclolor:#f0f9ff;
     --secondaryColor:hwb(156 43% 9%);
-    --fontColor:#ea580c;
+    /* --fontColor:#7C7C7C; */
+    --fontColor:#a21caf;
 }
 body{
     box-sizing: border-box;
