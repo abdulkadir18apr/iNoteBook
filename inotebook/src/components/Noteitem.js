@@ -10,8 +10,8 @@ export default function NoteItem(props) {
             <div className="horizontal">
                 <div className="tag">{note.tag}</div>
                 <div className="icon">
-                    <i className="fa-regular fa-trash-can mx-2" onClick={() => deleteNode(note._id)} ></i>
-                    <i className="fa-regular fa-pen-to-square mx-2"></i>
+                    <i className="fa-regular fa-trash-can mx-2" onClick={() =>{deleteNode(note._id); props.showAlert('Deleted Successfully','success');}}></i>
+                    <i className="fa-regular fa-pen-to-square mx-2"  onClick={(()=>props.updateNote(note))}></i>
                 </div>
             </div>
             <div className="vertical">

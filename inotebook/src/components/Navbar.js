@@ -17,6 +17,10 @@ export default function Navbar(props) {
         }
         
     }
+    const HandleLogout=()=>{
+        localStorage.removeItem('token');
+
+    }
    
     const [modeLabel,setModeLabel]=useState('Dark Mode')
     const HandleMode=()=>{
@@ -46,7 +50,12 @@ export default function Navbar(props) {
                         <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onChange={HandleMode} />
                         <label className="form-check-label" htmlFor="flexSwitchCheckDefault" style={{color:'#a21caf'} }>{modeLabel}</label>
                     </div></li>
+                    {!localStorage.getItem('token')?<div className={`right nav-list ${mobile}`}>
                     <li><Link to="/login" className= {`${location.pathname==='/login'?'active':''}`}>Login</Link></li>
+                    <li><Link to="/signup" className= {`${location.pathname==='/signup'?'active':''}`}>Sign Up</Link></li>
+                    </div>: <li><Link onClick={HandleLogout} to="/login" className= {`${location.pathname==='/login'?'active':''}`}>Logout</Link></li>}
+                    
+                    
                 </ul>
             </div>
         </>

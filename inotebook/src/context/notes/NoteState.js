@@ -14,7 +14,7 @@ const NoteState=(props)=>{
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNmYzNmMTI5MDQ4NjYzNTdlNjJmYjg5In0sImlhdCI6MTY3NzQ3ODA2NX0.KF6mkj9HUpKf3t9sPQA0TIJm6rHPidcUrXaV7wHDF-A" 
+          "auth-token":localStorage.getItem('token')
         },
       });
       const json=await response.json()
@@ -31,7 +31,7 @@ const NoteState=(props)=>{
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNmYzNmMTI5MDQ4NjYzNTdlNjJmYjg5In0sImlhdCI6MTY3NzQ3ODA2NX0.KF6mkj9HUpKf3t9sPQA0TIJm6rHPidcUrXaV7wHDF-A" 
+          "auth-token":localStorage.getItem('token')
         },
         body: JSON.stringify({title,description,tag}), 
       });
@@ -63,7 +63,7 @@ const NoteState=(props)=>{
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNmYzNmMTI5MDQ4NjYzNTdlNjJmYjg5In0sImlhdCI6MTY3NzQ3ODA2NX0.KF6mkj9HUpKf3t9sPQA0TIJm6rHPidcUrXaV7wHDF-A" 
+          "auth-token":localStorage.getItem('token')
         },
       });
       setTimeout(()=>{
@@ -73,27 +73,30 @@ const NoteState=(props)=>{
     }
 
 
-    ///Edit a Note
-    const editNote=async(id,title,description,tag)=>{
+    //Edit a Note
+    const editNote=async(note)=>{
+      const {_id,title,tag,description}=note;
       //Api Call
-      const response = await fetch(`${host}api/notes/updatenote:${id}`, {
-        method: "POST",
+      const response = await fetch(`${host}api/notes/updatenote/${_id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNmYzNmMTI5MDQ4NjYzNTdlNjJmYjg5In0sImlhdCI6MTY3NzQ3ODA2NX0.KF6mkj9HUpKf3t9sPQA0TIJm6rHPidcUrXaV7wHDF-A" 
+          "auth-token":localStorage.getItem('token')
         },
         body: JSON.stringify({title,description,tag}), 
       })
-      const json=response.json()
-      //Logic to Edit in Client
-      for (let index = 0; index < notes.length; index++) {
-        const element = notes[index];
-        if(element._id===id){
+      const json=  await response.json()
+      const newNotes=JSON.parse(JSON.stringify(notes))
+     //Logic to Edit in Client
+      for (let index = 0; index < newNotes.length; index++) {
+        const element = newNotes[index];
+        if(element._id===_id){
           element.title=title
           element.description=description
           element.tag=tag
         }
       }
+      setNotes(newNotes);
 
     }
 

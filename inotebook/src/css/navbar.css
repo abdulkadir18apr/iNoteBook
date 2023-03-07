@@ -47,6 +47,10 @@ body{
 .active{
     font-weight: 800;
 }
+.login{
+    display: flex;
+    flex-direction: row;
+}
 
 @media 
   (min-device-width: 200px) 
