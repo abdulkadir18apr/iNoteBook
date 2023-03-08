@@ -3,13 +3,12 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from '../context/notes/NoteContext'
 import Noteitem from './Noteitem'
 import '../css/Notes.css'
-import Addnote from './Addnote';
 import { useNavigate } from 'react-router-dom';
 
 
 export default function Notes(props) {
   let noteObj = useContext(noteContext);
-  let { notes, getNotes,editNote} = noteObj;
+  let { notes, getNotes,editNote} = noteObj;  
   const ref = useRef(null);
   const navigate=useNavigate();
   const [note,setNote]=useState({tag:"",title:"",description:""});
@@ -25,14 +24,11 @@ export default function Notes(props) {
     editNote(note);
     props.showAlert('Updated Successfully','success');
     ref.current.click()
-   
-
   }
 
  
   useEffect(() => {
     if(localStorage.getItem('token')){
-      console.log("token mill gya")
       getNotes();
     }
     else{

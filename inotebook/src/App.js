@@ -14,19 +14,20 @@ import { type } from '@testing-library/user-event/dist/type';
 
 
 function App() {
-  document.body.style.backgroundColor="#bae6fd";
   const [mode, setMode] = useState('light');
   const [alert, setAlert] = useState(null);
+  const [color,setColor]=useState('#bae6fd');
   const toggleMode = () => {
     if (mode === 'light') {
       setMode('dark');
-      document.body.style.backgroundColor="Black";
+      setColor("#3f3f46")
     }
     else {
       setMode('light');
-      document.body.style.backgroundColor="#bae6fd";
+      setColor("#bae6fd");
     }
   }
+
   const showAlert = (message, type) => {
     setAlert({ msg: message, type: type })
     setTimeout(() => {
@@ -38,7 +39,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className='page' style={{backgroundColor:color,height:"100vh"}}>
       <NoteState>
         <BrowserRouter>
 
@@ -48,8 +49,8 @@ function App() {
             <Routes>
               <Route path='/' element={<Home showAlert={showAlert} />}></Route>
               <Route path='/about' element={<About />}></Route>
-              <Route path='/login' element={<Login showAlert={showAlert} />}></Route>
-              <Route path='/signup' element={<Signup showAlert={showAlert} />}></Route>
+              <Route path='/login' element={<Login showAlert={showAlert} mode={mode} />}></Route>
+              <Route path='/signup' element={<Signup showAlert={showAlert} mode={mode} />}></Route>
             </Routes>
 
           </div>
@@ -59,7 +60,7 @@ function App() {
 
       </NoteState>
 
-    </>
+    </div>
   );
 }
 
