@@ -63,11 +63,11 @@ export default function Signup(props) {
                     <button type="submit" id="submit-btn" disabled={enable}>Submit</button>
                 </form>
             </div>
-            <div className="border" style={{ backgroundColor: "#164e63", position: "absolute", top: "30%", left: '40%', marginLeft: "6rem", borderRadius: "20px", width: "40rem" }}>
-                <p style={{ fontSize: "50px", color: "#fcd34d", padding: "2rem" }}>Take control of your ideas and stay focused with QuickNote.
-                </p>
-
-            </div>
+            <div className="border" style={props.mode==='dark'?{backgroundColor:'#F0F9FF',position:"absolute",top:"30%",left:'40%',marginLeft:"8rem",borderRadius:"20px",width:"40rem"}:{backgroundColor:'#164e63',position:"absolute",top:"30%",left:'40%',marginLeft:"8rem",borderRadius:"20px",width:"40rem"}}>
+            <p style={props.mode==='light'?{fontSize:"50px",color:"violet",padding:"2rem",fontFamily:"cursive"}:{fontSize:"50px",color:"#a21caf",padding:"2rem",fontFamily:"cursive"}}>Take control of your ideas and stay focused with QuickNote.
+            </p>
+          
+            </div>   
         </div>
 
 

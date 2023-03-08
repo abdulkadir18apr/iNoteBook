@@ -42,7 +42,7 @@ export default function Navbar(props) {
         <>
             <div className="navbar" style={props.mode==='dark'?{backgroundColor:'black'}:null}>
                 <div className="hamburger">
-                    <button id="hamburger-btn" onClick={HandleClick}  style={props.mode==='dark'?{backgroundColor:'black'}:null}    ><img  src={require("./img/icons8-hamburger-menu-64.png")}alt="Hamburger"/></button>
+                    <button id="hamburger-btn" onClick={HandleClick}  style={props.mode==='dark'?{backgroundColor:'#334155'}:null}    ><img  src={require("./img/icons8-hamburger-menu-64.png")}alt="Hamburger"/></button>
                 </div>
                 <h1>QuickNote</h1>
                 <ul className={`left nav-list ${mobile}`}>
