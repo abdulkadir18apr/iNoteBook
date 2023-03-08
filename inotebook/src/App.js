@@ -14,32 +14,37 @@ import { type } from '@testing-library/user-event/dist/type';
 
 
 function App() {
-  const [mode,setMode]=useState('light');
-  const [alert,setAlert]=useState(null);
-  const toggleMode=()=>{
-    if(mode==='light'){
+  document.body.style.backgroundColor="#bae6fd";
+  const [mode, setMode] = useState('light');
+  const [alert, setAlert] = useState(null);
+  const toggleMode = () => {
+    if (mode === 'light') {
       setMode('dark');
+      document.body.style.backgroundColor="Black";
     }
-    else{
+    else {
       setMode('light');
+      document.body.style.backgroundColor="#bae6fd";
     }
   }
-  const showAlert=(message,type)=>{
-    setAlert({msg:message,type:type})
-    setTimeout(()=>{
+  const showAlert = (message, type) => {
+    setAlert({ msg: message, type: type })
+    setTimeout(() => {
       setAlert(null);
-      
-    },2000)
-   
+
+    }, 2000)
+
 
   }
-  
+
   return (
     <>
-    <NoteState>
-    <BrowserRouter>
-    <Navbar toggleMode={toggleMode} mode={mode}/>
-    <Alert alert={alert}/>
+      <NoteState>
+        <BrowserRouter>
+
+          <Navbar toggleMode={toggleMode} mode={mode} />
+          <Alert alert={alert} />
+          <div className="app-container" style={{display:"flex",justifyContent:"center"}}>
             <Routes>
               <Route path='/' element={<Home showAlert={showAlert} />}></Route>
               <Route path='/about' element={<About />}></Route>
@@ -47,9 +52,12 @@ function App() {
               <Route path='/signup' element={<Signup showAlert={showAlert} />}></Route>
             </Routes>
 
+          </div>
+
+
         </BrowserRouter>
 
-    </NoteState>
+      </NoteState>
 
     </>
   );

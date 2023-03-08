@@ -1,10 +1,16 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect,useState,useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
 import '../css/navbar.css'
+import WelcomeUser from './WelcomeUser';
+import noteContext from '../context/notes/NoteContext';
+
 
 export default function Navbar(props) {
     let location = useLocation();
+    const contextObj=useContext(noteContext);
+    const {getUserData,user}=contextObj;
+    getUserData();
     useEffect(() => {
     }, [location]);
     const [mobile,setMobile]=useState('');
@@ -38,7 +44,7 @@ export default function Navbar(props) {
                 <div className="hamburger">
                     <button id="hamburger-btn" onClick={HandleClick}  style={props.mode==='dark'?{backgroundColor:'black'}:null}    ><img  src={require("./img/icons8-hamburger-menu-64.png")}alt="Hamburger"/></button>
                 </div>
-                <h1>iNoteBook</h1>
+                <h1>QuickNote</h1>
                 <ul className={`left nav-list ${mobile}`}>
                     
                     <li><Link to="/" className= {`${location.pathname==='/'?'active':''}`}>Home</Link></li>
@@ -53,7 +59,12 @@ export default function Navbar(props) {
                     {!localStorage.getItem('token')?<div className={`right nav-list ${mobile}`}>
                     <li><Link to="/login" className= {`${location.pathname==='/login'?'active':''}`}>Login</Link></li>
                     <li><Link to="/signup" className= {`${location.pathname==='/signup'?'active':''}`}>Sign Up</Link></li>
-                    </div>: <li><Link onClick={HandleLogout} to="/login" className= {`${location.pathname==='/login'?'active':''}`}>Logout</Link></li>}
+                    </div>:<div className={`right nav-list ${mobile}`}>
+                        <li><Link to="/">Welcome {user}</Link></li>
+                    <li><Link onClick={HandleLogout} to="/login" className= {`${location.pathname==='/login'?'active':''}`}>Logout</Link></li>
+
+                    </div>}
+                    
                     
                     
                 </ul>

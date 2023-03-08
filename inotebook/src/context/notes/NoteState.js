@@ -6,10 +6,13 @@ import noteContext from "./NoteContext";
 const NoteState=(props)=>{
     const host="http://localhost:8000/"
     const notesInitial=[];
-    const [notes,setNotes]=useState(notesInitial)
+    const [notes,setNotes]=useState(notesInitial);
+    const [user,setUser]=useState('');
 
     
     const getNotes=async()=>{
+        //Api Call
+
       const response = await fetch(`${host}api/notes/fetchallnotes`, {
         method: "GET",
         headers: {
@@ -20,8 +23,7 @@ const NoteState=(props)=>{
       const json=await response.json()
      setNotes(json.notes)
   
-      //Api Call
-
+    
     }
 
     // ADD A NOte
@@ -46,7 +48,8 @@ const NoteState=(props)=>{
         "date":json.date,
         "__v": 0
       }
-      setNotes(notes.concat(note));
+      let newNotes=[note,...notes]
+      setNotes(newNotes);
       console.log("Adding a Note")
 
     }
@@ -66,10 +69,7 @@ const NoteState=(props)=>{
           "auth-token":localStorage.getItem('token')
         },
       });
-      setTimeout(()=>{
-        <Alert message="Note Deleted"/>
-      },2000)
-     
+    
     }
 
 
@@ -100,8 +100,22 @@ const NoteState=(props)=>{
 
     }
 
+    //getUser details
+    const getUserData=async()=>{
+      const response = await fetch(`${host}api/auth/getuser`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token":localStorage.getItem('token')
+        },
+      })
+      const json=  await response.json();
+      setUser(json.name);
+
+    }
+
     return (
-        <noteContext.Provider value={{notes,setNotes,addNote,deleteNode,editNote,getNotes}}>
+        <noteContext.Provider value={{notes,setNotes,addNote,deleteNode,editNote,getNotes,getUserData,user}}>
             {props.children}
         </noteContext.Provider>
     )

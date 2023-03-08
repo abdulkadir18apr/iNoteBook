@@ -17,7 +17,6 @@ export default function NoteItem(props) {
             <div className="vertical">
                 <div className="title">{note.title}</div>
                 <div className="description">{note.description}</div>
-
             </div>
         </div>
     )
