@@ -2,15 +2,13 @@ import React, { useEffect,useState,useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
 import '../css/navbar.css'
-import WelcomeUser from './WelcomeUser';
 import noteContext from '../context/notes/NoteContext';
 
 
 export default function Navbar(props) {
     let location = useLocation();
     const contextObj=useContext(noteContext);
-    const {getUserData,user}=contextObj;
-    getUserData();
+    const {user}=contextObj;
     useEffect(() => {
     }, [location]);
     const [mobile,setMobile]=useState('');

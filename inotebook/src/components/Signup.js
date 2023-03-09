@@ -39,22 +39,22 @@ export default function Signup(props) {
     }
     return (
         <div className='page'>
-            <div class="form-container" style={{ display: "flex", minWidth: "32rem", marginTop: "1rem" }}>
-                <form class="form" method="POST" onSubmit={HandleSubmit}>
+            <div className="form-container" style={{ display: "flex", minWidth: "32rem", marginTop: "1rem" }}>
+                <form className="form" method="POST" onSubmit={HandleSubmit}>
                     <h1 style={{ padding: "1rem", fontWeight: "bolder", textDecoration: "underline" }}>Sign Up</h1>
-                    <div class="tag form-element">
+                    <div className="tag form-element">
                         <label for="name">name</label>
                         <input type="name" name="name" id="name" value={credentials.name} onChange={onChange} />
                     </div>
-                    <div class="tag form-element">
+                    <div className="tag form-element">
                         <label for="emial">Email</label>
                         <input type="email" name="email" id="email" value={credentials.email} onChange={onChange} />
                     </div>
-                    <div class="title form-element">
+                    <div className="title form-element">
                         <label for="password">Password</label>
                         <input type="password" name="password" id="password" value={credentials.password} onChange={onChange} />
                     </div>
-                    <div class="title form-element">
+                    <div className="title form-element">
                         <label for="cpassword">Confirm Password</label>
                         <input type="password" name="cpassword" id="cpassword" onChange={validatePassword} />
                     </div>

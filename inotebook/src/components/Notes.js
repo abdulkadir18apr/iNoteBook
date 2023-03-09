@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Notes(props) {
   let noteObj = useContext(noteContext);
-  let { notes, getNotes,editNote} = noteObj;  
+  let { notes, getNotes,editNote,getUserData} = noteObj;  
   const ref = useRef(null);
   const navigate=useNavigate();
   const [note,setNote]=useState({tag:"",title:"",description:""});
@@ -29,6 +29,7 @@ export default function Notes(props) {
  
   useEffect(() => {
     if(localStorage.getItem('token')){
+      getUserData();
       getNotes();
     }
     else{

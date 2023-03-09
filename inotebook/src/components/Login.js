@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 import '../css/Addnote.css'
-import Addnote from './Addnote';
+import noteContext from '../context/notes/NoteContext';
 
 export default function Login(props) {
     const [credential, setCredentials] = useState({ email: '', password: '' });
     const navigate = useNavigate();
+    const {getUserData}=useContext(noteContext);
     const isDark=()=>{
         if(props.mode==='dark'){
            document.documentElement.style.setProperty('--bgColor','#d1d5db');
@@ -40,6 +41,7 @@ export default function Login(props) {
             localStorage.setItem('token', json.authToken);
             props.showAlert("Login Successfully", 'success');
             navigate('/');
+            getUserData();
 
         }
         else {
@@ -54,11 +56,11 @@ export default function Login(props) {
                     <h1 style={{padding:"1rem",fontWeight:"bolder", textDecoration:"underline"}}>Login</h1>
                     <div class="tag form-element">
                         <label for="emial">Email</label>
-                        <input type="email" name="email" id="email" value={credential.email} onChange={onChange} />
+                        <input type="email" name="email" id="email" value={credential.email} onChange={onChange} autoComplete='username' />
                     </div>
                     <div class="title form-element">
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password"  value={credential.password} onChange={onChange} />
+                        <input type="password" name="password" id="password" autoComplete='current-password'   value={credential.password} onChange={onChange} />
                     </div>
 
                     <button type="submit" id="submit-btn">Submit</button>
